@@ -2,7 +2,7 @@ library(tidyverse)
 library(visNetwork)
 
 ### build network data ------------
-raw_links <- read_csv("/Users/evan/Dropbox/Projects/2017_Q4_NYT/data/links_data.csv")
+raw_links <- read_csv("https://raw.githubusercontent.com/etachov/nyt_opinion_citations/master/data/links_data.csv")
 
 # build the raw edges data.frame
 edges <- raw_links %>%
@@ -60,7 +60,7 @@ graph <- visNetwork(edges = edges,
                     width = "100%", 
                     main = list(text = "What Sites do NYT Columnists Cite?", 
                                 style = "font-size:36px; font-family: monospace;text-align:center;"),
-                    submain = list(text = "&#x25CF; Columnist   &#x25A0; Source   &#x2014; Citation<br>Click, drag, and zoom to adjust the graph. Data available <a href='https://github.com/etachov/funder_network' style='color:#000000' target='_blank'>here</a>.", 
+                    submain = list(text = "&#x25CF; Columnist   &#x25A0; Source   &#x2014; Citation<br>Click, drag, and zoom to adjust the graph. Data available <a href='https://github.com/etachov/nyt_opinion_citations' style='color:#000000' target='_blank'>here</a>.", 
                                    style = "font-size:20px;font-family: monospace;text-align:center;")) %>%
   visOptions(highlightNearest = list(enabled = TRUE, 
                                      degree = 1, 
@@ -97,7 +97,7 @@ num_links_sources <- ggplot(out_links, aes(x = num.source, y = num.links, label 
        x = "# of sites linked to", 
        y = "Total # of links")
 
-ggsave("/Users/evan/github/etachov.github.io/images/2018-01-28-citation_frequency.png", num_links_sources, width = 7, height = 6, dpi = 500)
+ggsave("2018-01-28-citation_frequency.png", num_links_sources, width = 7, height = 6, dpi = 500)
 
 ## determine who links to the most unique outlets
 in_links <- edges %>%
